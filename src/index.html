@@ -1,41 +1,205 @@
 <html>
-  <head>
-    <script type="text/javascript" src="js/handleform.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script language="javascript" type="text/javascript">
-      $(function () {
-        $("#BTN").on("click", function () {
-          var $form = $("#add");
-          var data = getFormData($form);
-          console.log(data);
-          $.ajax({
-            url: "./php/login.php",
-            type: "post",
-            dataType: "json",
-            data: data,
-            success: function (returnData) {
-              //console.log(returnData);
-            },
-            error: function (data) {
-              console.log(data);
-            },
-          });
+
+<head>
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+
+    html {
+      font-family: "Noto Sans TC";
+    }
+
+    body {
+      background-color: rgb(241, 241, 231);
+      text-align: center;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      color: inherit;
+      list-style: none;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-125%);
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-166.65%);
+        }
+      }
+    }
+
+    #marquee {
+      padding: 50px 0;
+      width: 100%;
+    }
+
+    #marquee .view {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    #marquee .pic-container {
+      display: flex;
+      animation: marquee 60s infinite linear;
+    }
+
+    #marquee .pic-container .pic {
+      flex-basis: 20%;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1024px) {
+      #marquee .pic-container .pic {
+        flex-basis: 25%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #marquee .pic-container .pic {
+        flex-basis: 33.33%;
+      }
+    }
+
+    #marquee img {
+      width: 100%;
+      vertical-align: middle;
+    }
+
+    .logo {
+      width: 350px;
+      height: 350px;
+      background-image: url(Logo.jpg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      animation-name:slide;
+      animation-duration: 4s;
+      align-items: center;
+    }
+    @keyframes slide{
+      from{background-image: url(blank.jpg);}
+      to{
+        background-image: url(Logo.jpg);
+      }
+    }
+
+  </style>
+  <script type="text/javascript" src="js/handleform.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script language="javascript" type="text/javascript">
+    $(function () {
+      $("#BTN").on("click", function () {
+        var $form = $("#add");
+        var data = getFormData($form);
+        console.log(data);
+        $.ajax({
+          url: "./php/login.php",
+          type: "post",
+          dataType: "json",
+          data: data,
+          success: function (returnData) {
+            //console.log(returnData);
+          },
+          error: function (data) {
+            console.log(data);
+          },
         });
       });
-    </script>
-    <title>登入介面</title>
-  </head>
-  <body>
-    <h1>Log In</h1>
-    <h2>你可以選擇登入或是註冊帳號~</h2>
-    <form id="add">
-      帳號：
-      <input type="text" name="username" /><br /><br />
-      密碼：
-      <input type="password" name="password" /><br /><br />
-    </form>
-    <button type="button" id="BTN" class="btn btn-default">登入</button>
-    <a href="register.html">還沒有帳號？現在就註冊！</a>
-  </body>
+    });
+  </script>
+  <title>登入介面</title>
+</head>
+
+<body>
+  <section id="marquee">
+    <div class="view">
+      <div class="pic-container">
+        <div class="pic" id="img1">
+          <img src="Food1.png" alt="" />
+        </div>
+        <div class="pic" id="img2">
+          <img src="Food2.png" alt="" />
+        </div>
+        <div class="pic" id="img3">
+          <img src="Food3.png" alt="" />
+        </div>
+        <div class="pic" id="img4">
+          <img src="Food4.png" alt="" />
+        </div>
+        <div class="pic" id="img5">
+          <img src="Food5.png" alt="" />
+        </div>
+        <div class="pic" id="img6">
+          <img src="Food1.png" alt="" />
+        </div>
+        <div class="pic" id="img7">
+          <img src="Food2.png" alt="" />
+        </div>
+        <div class="pic" id="img8">
+          <img src="Food3.png" alt="" />
+        </div>
+        <div class="pic" id="img9">
+          <img src="Food4.png" alt="" />
+        </div>
+        <div class="pic" id="img10">
+          <img src="Food5.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <br />
+  <div id="sign" class="Welcome-container">
+    <h1>歡迎來到花娘小館</h1>
+    <h1>Welcome to Flower Restaurent</h1>
+  </div>
+  <br />
+  <h2>你可以選擇登入或是註冊帳號~</h2>
+
+  <form id="add">
+    帳號：
+    <input type="text" name="username" /><br /><br />
+    密碼：
+    <input type="password" name="password" /><br /><br />
+  </form>
+  <button type="button" id="BTN" class="btn btn-default">登入</button>
+  <a href="register.html">還沒有帳號？現在就註冊！</a>
+  <br />
+  <br />
+  <a href="https://www.facebook.com/profile.php?id=100063747175185" target="_blank"><img
+      class="logo"></a>
+</body>
+
 </html>
