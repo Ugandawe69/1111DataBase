@@ -1,21 +1,21 @@
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="js/handleform.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" type="text/javascript">
       $(function () {
         $("#BTN").on("click", function () {
-          var $form = $("#add");
+          var $form = $("#registerForm");
           var data = getFormData($form);
-          console.log(data);
+          console.log(data); //這邊有印出來看
           $.ajax({
-            url: "./php/login.php",
+            url: "./php/register.php",
             type: "post",
             dataType: "json",
             data: data,
             success: function (returnData) {
-              //console.log(returnData);
+              console.log(returnData);
             },
             error: function (data) {
               console.log(data);
@@ -24,18 +24,23 @@
         });
       });
     </script>
-    <title>登入介面</title>
+    <title>會員註冊</title>
+    <script></script>
   </head>
   <body>
-    <h1>Log In</h1>
-    <h2>你可以選擇登入或是註冊帳號~</h2>
-    <form id="add">
-      帳號：
+    <h1>註冊頁面</h1>
+    <form id="registerForm">
+      帳 號：
       <input type="text" name="username" /><br /><br />
-      密碼：
-      <input type="password" name="password" /><br /><br />
+      密 碼：
+      <input type="password" name="password" id="password" /><br /><br />
+      確認密碼：
+      <input
+        type="password"
+        name="password_check"
+        id="password_check"
+      /><br /><br />
+      <button type="button" id="BTN" class="btn btn-default">註冊</button>
     </form>
-    <button type="button" id="BTN" class="btn btn-default">登入</button>
-    <a href="register.html">還沒有帳號？現在就註冊！</a>
   </body>
 </html>
