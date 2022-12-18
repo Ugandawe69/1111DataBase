@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!--參考https://codepen.io/codewitharyann/pen/poERmEM-->
+
 <head>
     <meta charset="utf-8">
     <title>點餐頁面</title>
@@ -165,7 +166,7 @@
         }
 
 
-        .order-details-container {
+        .order-menu-container {
             position: relative;
             z-index: 6;
             height: 900px;
@@ -220,7 +221,7 @@
             outline: none;
         }
 
-        .order-details-container::before {
+        .order-menu-container::before {
             content: '';
             position: absolute;
             width: 70px;
@@ -301,20 +302,82 @@
 
         }
     </style>
+    <script type="text/javascript" src="js/handleform.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script src="jquery-3.6.1.min.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript" type="text/javascript">
+        /*
+        $(function () {
+            $("#BTN").on("click", function () {
+                var $form = $("#add");
+                var data = getFormData($form);
+                console.log(data);
+                $.ajax({
+                    url: "./php/login.php",
+                    type: "post",
+                    dataType: "json",
+                    data: data,
+                    success: function (returnData) {
+                        //console.log(returnData);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                });
+            });
+        });*/
+
+
+        //start function for window.addEventListener 
+        function start() {
+            $.ajax({
+                url: "./php/login.php",
+                type: "post",
+                dataType: "json",
+                data: data,
+                success: function (returnData) {
+                    //console.log(returnData);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        }
+        //Addition load function for other purpose
+        function load() {
+            $.ajax({
+                url: "./php/login.php",
+                type: "post",
+                dataType: "json",
+                data: data,
+                success: function (returnData) {
+                    //console.log(returnData);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        }
+        window.addEventListener("load", start, false);
+    </script>
+
 </head>
 
 <body>
+    <!---------------------container-------------------->
     <div class="container">
         <div>
+
+            <!---------header area----------->
             <div class="header">
                 <div class="order-summary">
                     <div class="order-status">Order date</div>
-                    <div class="order-date">
+                    <div class="order-date" id="orderDate">
                         17 December, 2022
                     </div>
-                    <div class="order-day">
+                    <div class="order-day" id="weekDay">
                         Saturday
                     </div>
                 </div>
@@ -322,9 +385,20 @@
                     <div class="back-btn"><i class="far fa-long-arrow-left">關閉菜單</i></div>
                 </div>
             </div>
+            <!---------header area----------->
+
+
+
+            <!---------logo area----------->
             <div class="logo-img-container">
                 <img src="Logo2.jpg" class="logo-img">
             </div>
+            <!---------logo area----------->
+
+
+
+
+            <!---------order-status area----------->
             <div class="order-status-container">
                 <br>
                 <h2>點餐紀錄</h2>
@@ -333,18 +407,25 @@
                     <br>
                     <div id="orderTotal"> </div>
                 </div>
-                
             </div>
-            <div class="order-details-container">
+            <!---------order-status area----------->
+
+
+
+            <!---------order-menu area----------->
+            <div class="order-menu-container">
+
                 <div class="odc-header">
                     <div class="cta-text">See Our Menu</div>
                     <div class="cta-button-container">
                         <button class="cta-button">Open</button>
                     </div>
                 </div>
+
+
                 <div class="odc-wrapper">
                     <div class="odc-header-line">
-                        Your order details
+                        Menu
                     </div>
                     <div class="odc-header-Best">
                         人氣首選
@@ -352,35 +433,39 @@
                     <div class="product-container">
                         <div class="product">
                             <div class="product-desc">
-                                <!--<form method="get" action=""> -->
-                                    <label>綜合水煮 $320
-                                        <input name="food1" id="index1" type="number" min="0" max="7" step="1" value="0"
-                                            onchange="count()" />
-                                    </label>
-                                    <br>
-                                    <label>椒麻雞塊 $280
-                                        <input name="food2" id="index2" type="number" min="0" max="7" step="1" value="0"
-                                            onchange="count()" />
-                                    </label>
-                                    <br>
-                                    <label>花娘烤排 $360
-                                        <input name="food3" id="index3" type="number" min="0" max="7" step="1" value="0"
-                                            onchange="count()" />
-                                    </label>
-                                    <br>
-                                    <label>那個中卷 $300
-                                        <input name="food4" id="index4" type="number" min="0" max="7" step="1" value="0"
-                                            onchange="count()" />
-                                    </label>
-                                    <br>
-                                    <label>海鮮豆腐煲 $320
-                                        <input name="food5" id="index5" type="number" min="0" max="7" step="1" value="0"
-                                            onchange="count()" />
-                                    </label>
-                                    <br>
 
-                                    <input type="submit" value="確定" onclick="OrderTotal()"/>
-                                    <input type="reset" value="清除" onclick="clr()"/>
+                                <!-------------這裡的訂單可以連結資料庫，存到order table------------->
+
+                            
+                                <!--<form method="get" action=""> -->
+                                <label>綜合水煮 $320
+                                    <input name="food1" id="index1" type="number" min="0" max="7" step="1" value="0"
+                                        onchange="count()" />
+                                </label>
+                                <br>
+                                <label>椒麻雞塊 $280
+                                    <input name="food2" id="index2" type="number" min="0" max="7" step="1" value="0"
+                                        onchange="count()" />
+                                </label>
+                                <br>
+                                <label>花娘烤排 $360
+                                    <input name="food3" id="index3" type="number" min="0" max="7" step="1" value="0"
+                                        onchange="count()" />
+                                </label>
+                                <br>
+                                <label>那個中卷 $300
+                                    <input name="food4" id="index4" type="number" min="0" max="7" step="1" value="0"
+                                        onchange="count()" />
+                                </label>
+                                <br>
+                                <label>海鮮豆腐煲 $320
+                                    <input name="food5" id="index5" type="number" min="0" max="7" step="1" value="0"
+                                        onchange="count()" />
+                                </label>
+                                <br>
+
+                                <input type="submit" value="確定" onclick="OrderTotal()" />
+                                <input type="reset" value="清除" onclick="clr()" />
                                 <!--</form>-->
                             </div>
                         </div>
@@ -388,15 +473,20 @@
 
                     <div class="shipping-desc">Total</div>
 
+                    <!-------------這裡的總額可以連結資料庫，存到新的記帳(暫定先到Order) table------------->
                     <div id="total" class="shipping-total">
                         目前總額: 0 NT$
                     </div>
                 </div>
             </div>
         </div>
+        <!---------------------container-------------------->
     </div>
     </div>
 </body>
+
+
+<!----script for animation ----->
 <script>
     //anime.js library
     let drawer_open = false;
@@ -442,7 +532,7 @@
 
 
     let slidedown = anime({
-        targets: '.order-details-container',
+        targets: '.order-menu-container',
         translateY: ['-560', '-40px'],
         duartion: 1000,
         autoplay: false,
@@ -453,7 +543,7 @@
     })
 
     let slideup = anime({
-        targets: '.order-details-container',
+        targets: '.order-menu-container',
         translateY: ['-40px', '-750px'],
         autoplay: false,
         begin: function () {
@@ -466,11 +556,22 @@
         document.querySelector(".cta-text").style.display = param;
     }
 </script>
+
+
+<!--------------logic for deal database data------------------>
 <script>
     let total = 0;
+    //取決於table資料數
     const numberOfMeal = 5;
-    let mealArray=new Array(numberOfMeal);
-    let nameArray=["綜合水煮","椒麻雞塊","花娘烤排","那個中卷","海鮮豆腐煲"]
+
+    //客人點了甚麼得陣列
+    let mealArray = new Array(numberOfMeal);
+
+    //可以從Menu table提取陣列
+    let nameArray = ["綜合水煮", "椒麻雞塊", "花娘烤排", "那個中卷", "海鮮豆腐煲"];
+
+
+    //計算目前金額
     function count() {
         let price = [320, 280, 360, 300, 320];
         let total = 0;
@@ -479,25 +580,30 @@
         }
         $("#total").text("目前總額: " + total + " NT$");
     }
-    function OrderTotal(){
-       
-        let output="";
-        for(let i=0;i<mealArray.length;i++){
+
+
+    //按下確定鍵後，確定訂單成立
+    function OrderTotal() {
+
+        let output = "";
+        for (let i = 0; i < mealArray.length; i++) {
             mealArray[i] = $("#index" + (i + 1)).val();
         }
         count();
-        for(let i=0;i<mealArray.length;i++){
-           if(mealArray[i]>0){
-            output+=nameArray[i]+" "+mealArray[i] + "份<br>";
-            console.log(output);
-           }
+        for (let i = 0; i < mealArray.length; i++) {
+            if (mealArray[i] > 0) {
+                output += nameArray[i] + " " + mealArray[i] + "份<br>";
+                console.log(output);
+            }
         }
         console.log(output);
         $("#record").html(output);
         alert(output);
         $("#orderTotal").text("點菜總額: " + total + " NT$");
     }
-    function clr(){
+
+    //清除
+    function clr() {
         $("#total").text("目前總額: " + 0 + " NT$");
     }
 
