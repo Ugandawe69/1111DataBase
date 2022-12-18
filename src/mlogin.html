@@ -6,41 +6,27 @@
     <script language="javascript" type="text/javascript">
       $(function () {
         $("#BTN").on("click", function () {
-          var $form = $("#registerForm");
+          var $form = $("#manageForm");
           var data = getFormData($form);
           console.log(data); //這邊有印出來看
-          $.ajax({
-            url: "./php/register.php",
-            type: "post",
-            dataType: "text",
-            data: data,
-            success: function (returnData) {
-              RegisterReturndata(returnData);
-            },
-            error: function (error) {
-              console.log("33333333");
-            },
-          });
+          if (data.username == "root" && data.password == "root") {
+            //這邊要改成連結的換頁
+            window.location.replace("./manager.html");
+          }
         });
       });
     </script>
-    <title>會員註冊</title>
+    <title>管理員登入</title>
     <script></script>
   </head>
   <body>
-    <h1>註冊頁面</h1>
-    <form id="registerForm">
+    <h1>管理員登入</h1>
+    <form id="manageForm">
       帳 號：
       <input type="text" name="username" /><br /><br />
       密 碼：
       <input type="password" name="password" id="password" /><br /><br />
-      確認密碼：
-      <input
-        type="password"
-        name="password_check"
-        id="password_check"
-      /><br /><br />
-      <button type="button" id="BTN" class="btn btn-default">註冊</button>
+      <button type="button" id="BTN" class="btn btn-default">登入</button>
     </form>
   </body>
 </html>
