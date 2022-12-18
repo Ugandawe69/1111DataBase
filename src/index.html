@@ -25,6 +25,7 @@
         margin: 0;
         padding: 0;
       }
+
       @keyframes food {
         0% {
           transform: translateX(0);
@@ -99,34 +100,38 @@
       .logo {
         width: 350px;
         height: 350px;
-        background-image: url(./source/Logo.jpg);
+        background-image: url(Logo.jpg);
         background-repeat: no-repeat;
         background-size: contain;
         animation-name: slide;
         animation-duration: 4s;
         align-items: center;
       }
+
       .hreflink {
         color: rgb(124, 32, 32);
         text-decoration: none;
       }
+
       .hreflink:hover {
         background-color: lightblue;
         color: navy;
         font-weight: bold;
         text-decoration: underline;
       }
+
       @keyframes slide {
         from {
-          background-image: url(./source/blank.jpg);
+          background-image: url(blank.jpg);
         }
+
         to {
-          background-image: url(./source/Logo.jpg);
+          background-image: url(Logo.jpg);
         }
       }
     </style>
     <!-- 參考網站：http://chainan.cosmo-br.tw/ -->
-    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/handleform.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" type="text/javascript">
@@ -138,17 +143,48 @@
           $.ajax({
             url: "./php/login.php",
             type: "post",
-            dataType: "text",
+            dataType: "json",
             data: data,
             success: function (returnData) {
-              LoginReturndata(returnData);
+              //console.log(returnData);
             },
             error: function (data) {
-              console.log("33333333");
+              console.log(data);
             },
           });
         });
       });
+      //start function for windowEventHandler
+      function start() {
+        $.ajax({
+          url: "./php/login.php",
+          type: "post",
+          dataType: "json",
+          data: data,
+          success: function (returnData) {
+            //console.log(returnData);
+          },
+          error: function (data) {
+            console.log(data);
+          },
+        });
+      }
+      //Addition load function for other purpose
+      function load() {
+        $.ajax({
+          url: "./php/login.php",
+          type: "post",
+          dataType: "json",
+          data: data,
+          success: function (returnData) {
+            //console.log(returnData);
+          },
+          error: function (data) {
+            console.log(data);
+          },
+        });
+      }
+      window.addEventListener("load", start, false);
     </script>
     <title>登入介面</title>
   </head>
@@ -158,34 +194,34 @@
       <div class="view">
         <div class="pic-container">
           <div class="pic" id="img1">
-            <img src="./source/Food1.png" alt="" />
+            <img src="Food1.png" alt="" />
           </div>
           <div class="pic" id="img2">
-            <img src="./source/Food2.png" alt="" />
+            <img src="Food2.png" alt="" />
           </div>
           <div class="pic" id="img3">
-            <img src="./source/Food3.png" alt="" />
+            <img src="Food3.png" alt="" />
           </div>
           <div class="pic" id="img4">
-            <img src="./source/Food4.png" alt="" />
+            <img src="Food4.png" alt="" />
           </div>
           <div class="pic" id="img5">
-            <img src="./source/Food5.png" alt="" />
+            <img src="Food5.png" alt="" />
           </div>
           <div class="pic" id="img6">
-            <img src="./source/Food1.png" alt="" />
+            <img src="Food1.png" alt="" />
           </div>
           <div class="pic" id="img7">
-            <img src="./source/Food2.png" alt="" />
+            <img src="Food2.png" alt="" />
           </div>
           <div class="pic" id="img8">
-            <img src="./source/Food3.png" alt="" />
+            <img src="Food3.png" alt="" />
           </div>
           <div class="pic" id="img9">
-            <img src="./source/Food4.png" alt="" />
+            <img src="Food4.png" alt="" />
           </div>
           <div class="pic" id="img10">
-            <img src="./source/Food5.png" alt="" />
+            <img src="Food5.png" alt="" />
           </div>
         </div>
       </div>
@@ -205,8 +241,7 @@
       <input type="password" name="password" /><br /><br />
     </form>
     <button type="button" id="BTN" class="btn btn-default">登入</button>
-    <a href="register.html">還沒有帳號？現在就註冊！</a>
-    <a href="mlogin.html">管理者</a>
+    <a href="register.html" class="hreflink">還沒有帳號？現在就註冊！</a>
     <br />
     <br />
     <a

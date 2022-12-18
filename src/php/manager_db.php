@@ -17,9 +17,11 @@
             $sql="DELETE FROM meal WHERE name='".$name."'";
         }
 
-        if($action==""){
-            //減去資料庫裡的東西
-            $sql="DELETE FROM meal WHERE name='".$name."'";
+        if($action=="updata"){
+            $change_name = $_POST["change_name"];
+            $change_price = $_POST["price"];
+            $sql="UPDATE meal name='".$change_name."', price='".$change_price."'
+            WHERE name='".$name."'";
         }
 
         if(mysqli_query($conn, $sql)){
