@@ -100,7 +100,7 @@
       .logo {
         width: 350px;
         height: 350px;
-        background-image: url(Logo.jpg);
+        background-image: url(./source/Logo.jpg);
         background-repeat: no-repeat;
         background-size: contain;
         animation-name: slide;
@@ -122,16 +122,16 @@
 
       @keyframes slide {
         from {
-          background-image: url(blank.jpg);
+          background-image: url(./source/blank.jpg);
         }
 
         to {
-          background-image: url(Logo.jpg);
+          background-image: url(./source/Logo.jpg);
         }
       }
     </style>
     <!-- 參考網站：http://chainan.cosmo-br.tw/ -->
-    <script type="text/javascript" src="js/handleform.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" type="text/javascript">
@@ -143,13 +143,13 @@
           $.ajax({
             url: "./php/login.php",
             type: "post",
-            dataType: "json",
+            dataType: "text",
             data: data,
             success: function (returnData) {
-              //console.log(returnData);
+              LoginReturndata(returnData);
             },
             error: function (data) {
-              console.log(data);
+              console.log("1111111111");
             },
           });
         });
@@ -194,34 +194,34 @@
       <div class="view">
         <div class="pic-container">
           <div class="pic" id="img1">
-            <img src="Food1.png" alt="" />
+            <img src="./source/Food1.png" alt="" />
           </div>
           <div class="pic" id="img2">
-            <img src="Food2.png" alt="" />
+            <img src="./source/Food2.png" alt="" />
           </div>
           <div class="pic" id="img3">
-            <img src="Food3.png" alt="" />
+            <img src="./source/Food3.png" alt="" />
           </div>
           <div class="pic" id="img4">
-            <img src="Food4.png" alt="" />
+            <img src="./source/Food4.png" alt="" />
           </div>
           <div class="pic" id="img5">
-            <img src="Food5.png" alt="" />
+            <img src="./source/Food5.png" alt="" />
           </div>
           <div class="pic" id="img6">
-            <img src="Food1.png" alt="" />
+            <img src="./source/Food1.png" alt="" />
           </div>
           <div class="pic" id="img7">
-            <img src="Food2.png" alt="" />
+            <img src="./source/Food2.png" alt="" />
           </div>
           <div class="pic" id="img8">
-            <img src="Food3.png" alt="" />
+            <img src="./source/Food3.png" alt="" />
           </div>
           <div class="pic" id="img9">
-            <img src="Food4.png" alt="" />
+            <img src="./source/Food4.png" alt="" />
           </div>
           <div class="pic" id="img10">
-            <img src="Food5.png" alt="" />
+            <img src="./source/Food5.png" alt="" />
           </div>
         </div>
       </div>
@@ -242,6 +242,7 @@
     </form>
     <button type="button" id="BTN" class="btn btn-default">登入</button>
     <a href="register.html" class="hreflink">還沒有帳號？現在就註冊！</a>
+    <a href="manager.html" class="hreflink">管理者</a>
     <br />
     <br />
     <a

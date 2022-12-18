@@ -17,6 +17,7 @@
             $sql="DELETE FROM meal WHERE name='".$name."'";
         }
 
+        //這裡疑似sql有問題
         if($action=="updata"){
             $change_name = $_POST["change_name"];
             $change_price = $_POST["price"];
