@@ -1,32 +1,130 @@
 <html>
-  <head>
+
+<head>
+    <style>
+        @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+
+        html {
+            font-family: "Noto Sans TC";
+        }
+
+        body {
+            background-color: rgba(19, 35, 47, .9);
+            text-align: center;
+        }
+
+        .logo {
+            width: 350px;
+            height: 350px;
+            background-image: url(./source/Logo2.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation-name: slide;
+            animation-duration: 4s;
+            align-items: center;
+        }
+
+        .hreflink {
+            color: rgb(124, 32, 32);
+            text-decoration: none;
+        }
+
+        .hreflink:hover {
+            background-color: lightblue;
+            color: navy;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .img-container{
+            background-color:rgb(241, 241, 231);
+            padding: 40px;
+            max-width: 70%;
+            opacity: 0.8;
+            margin: 40px auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px 4px rgba(10, 29, 3, 0.3);
+        }
+
+        .form-container{
+            background-color:rgb(241, 241, 231);
+            padding: 40px;
+
+            max-width: 30%;
+            border-radius: 20px;
+
+            opacity: 0.8;
+            margin: 40px auto;
+           
+            box-shadow: 0 4px 6px 3px rgba(2, 23, 39, 0.3);
+        }
+        .h1-container{
+            background-color:#a0b3b0;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+            top: -20px;
+            border-radius: 10px;
+        }
+        .text-field{
+            margin: 2px;
+	        color: #d6e4e0;
+            background-color: rgba(30, 63, 88, 0.9);;
+            
+        }
+        
+        @keyframes slide {
+            from {
+                background-image: url(./source/blank.jpg);
+            }
+
+            to {
+                background-image: url(./source/Logo.jpg);
+            }
+        }
+
+        
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="js/ajax.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script language="javascript" type="text/javascript">
-      $(function () {
-        $("#BTN").on("click", function () {
-          var $form = $("#manageForm");
-          var data = getFormData($form);
-          console.log(data); //這邊有印出來看
-          if (data.username == "root" && data.password == "root") {
-            //這邊要改成連結的換頁
-            window.location.replace("./manager.html");
-          }
+        $(function () {
+            $("#BTN").on("click", function () {
+                var $form = $("#manageForm");
+                var data = getFormData($form);
+                console.log(data); //這邊有印出來看
+                if (data.username == "root" && data.password == "root") {
+                    //這邊要改成連結的換頁
+                    window.location.replace("./manager.html");
+                }
+            });
         });
-      });
     </script>
     <title>管理員登入</title>
     <script></script>
-  </head>
-  <body>
-    <h1>管理員登入</h1>
-    <form id="manageForm">
-      帳 號：
-      <input type="text" name="username" /><br /><br />
-      密 碼：
-      <input type="password" name="password" id="password" /><br /><br />
-      <button type="button" id="BTN" class="btn btn-default">登入</button>
-    </form>
-  </body>
+</head>
+
+<body>
+    <div class="img-container">
+        <img class="logo">
+    </div>
+    
+    <br>
+    <br>
+    
+    <div class="form-container">
+        <div class="h1-container">
+            <h1>管理員登入</h1>
+        </div>
+        
+        <form id="manageForm"></form>
+        帳 號：
+        <input  class="text-field" type="text" name="username" /><br /><br />
+        密 碼：
+        <input  class="text-field" type="password" name="password" id="password" /><br /><br />
+        <button type="button" class="button" id="BTN" class="btn btn-default">登入</button>
+    </div>
+</body>
+
+
 </html>
