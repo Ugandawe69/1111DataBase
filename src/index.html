@@ -3,7 +3,7 @@
 <head>
   <style type="text/css">
     @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
-    
+
     html {
       font-family: "Noto Sans TC";
     }
@@ -26,6 +26,7 @@
       margin: 0;
       padding: 0;
     }
+
     @keyframes food {
       0% {
         transform: translateX(0);
@@ -103,23 +104,29 @@
       background-image: url(Logo.jpg);
       background-repeat: no-repeat;
       background-size: contain;
-      animation-name:slide;
+      animation-name: slide;
       animation-duration: 4s;
       align-items: center;
     }
-    .hreflink{
-        color: rgb(124, 32, 32);
-        text-decoration:none;
+
+    .hreflink {
+      color: rgb(124, 32, 32);
+      text-decoration: none;
+    }
+
+    .hreflink:hover {
+      background-color: lightblue;
+      color: navy;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    @keyframes slide {
+      from {
+        background-image: url(blank.jpg);
       }
-      .hreflink:hover{
-        background-color:lightblue;
-        color:navy;
-        font-weight:bold;
-        text-decoration:underline;
-      }
-    @keyframes slide{
-      from{background-image: url(blank.jpg);}
-      to{
+
+      to {
         background-image: url(Logo.jpg);
       }
     }
@@ -148,6 +155,37 @@
         });
       });
     });
+    //start function for windowEventHandler 
+    function start() {
+      $.ajax({
+        url: "./php/login.php",
+        type: "post",
+        dataType: "json",
+        data: data,
+        success: function (returnData) {
+          //console.log(returnData);
+        },
+        error: function (data) {
+          console.log(data);
+        },
+      });
+    }
+    //Addition load function for other purpose
+    function load() {
+      $.ajax({
+        url: "./php/login.php",
+        type: "post",
+        dataType: "json",
+        data: data,
+        success: function (returnData) {
+          //console.log(returnData);
+        },
+        error: function (data) {
+          console.log(data);
+        },
+      });
+    }
+    window.addEventListener("load", start, false);
   </script>
   <title>登入介面</title>
 </head>
@@ -204,11 +242,10 @@
     <input type="password" name="password" /><br /><br />
   </form>
   <button type="button" id="BTN" class="btn btn-default">登入</button>
-  <a href="register.html">還沒有帳號？現在就註冊！</a>
+  <a href="register.html" class="hreflink">還沒有帳號？現在就註冊！</a>
   <br />
   <br />
-  <a href="https://www.facebook.com/profile.php?id=100063747175185" target="_blank"><img
-      class="logo"></a>
+  <a href="https://www.facebook.com/profile.php?id=100063747175185" target="_blank"><img class="logo"></a>
   <br>
   <a href="https://www.facebook.com/profile.php?id=100063747175185" target="_blank" class="hreflink">Facebook</a>
 </body>
