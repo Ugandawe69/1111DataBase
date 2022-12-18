@@ -308,26 +308,23 @@
     <script src="jquery-3.6.1.min.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" type="text/javascript">
-        /*
-        $(function () {
-            $("#BTN").on("click", function () {
-                var $form = $("#add");
-                var data = getFormData($form);
-                console.log(data);
-                $.ajax({
-                    url: "./php/login.php",
-                    type: "post",
-                    dataType: "json",
-                    data: data,
-                    success: function (returnData) {
-                        //console.log(returnData);
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    },
-                });
-            });
-        });*/
+        //要json資料 
+        let jsonUrl = "./php/manager.php"; 
+        $.getJSON(jsonUrl, function(data) { 
+            for (let item in data) { 
+                let content = 
+                "<label>" + 
+                data[item].name + 
+                " " + 
+                data[item].price + 
+                '<input name="food1" id="index1" type="number" min="0" max="7" step="1" value="0" onchange="count()" />' +
+                "</label>" +
+                "<br>" 
+                $(".product-desc").append(content) 
+            } 
+            $(".product-desc").append('<input type="submit" value="確定" onclick="OrderTotal()" />') 
+            $(".product-desc").append('<input type="reset" value="清除" onclick="clr()" />')                   
+        });
 
 
         //start function for window.addEventListener 
@@ -401,7 +398,7 @@
 
             <!---------logo area----------->
             <div class="logo-img-container">
-                <img src="Logo2.jpg" class="logo-img">
+                <img src="./source/Logo2.jpg" class="logo-img">
             </div>
             <!---------logo area----------->
 
@@ -448,34 +445,9 @@
 
                             
                                 <!--<form method="get" action=""> -->
-                                <label>綜合水煮 $320
-                                    <input name="food1" id="index1" type="number" min="0" max="7" step="1" value="0"
-                                        onchange="count()" />
-                                </label>
-                                <br>
-                                <label>椒麻雞塊 $280
-                                    <input name="food2" id="index2" type="number" min="0" max="7" step="1" value="0"
-                                        onchange="count()" />
-                                </label>
-                                <br>
-                                <label>花娘烤排 $360
-                                    <input name="food3" id="index3" type="number" min="0" max="7" step="1" value="0"
-                                        onchange="count()" />
-                                </label>
-                                <br>
-                                <label>那個中卷 $300
-                                    <input name="food4" id="index4" type="number" min="0" max="7" step="1" value="0"
-                                        onchange="count()" />
-                                </label>
-                                <br>
-                                <label>海鮮豆腐煲 $320
-                                    <input name="food5" id="index5" type="number" min="0" max="7" step="1" value="0"
-                                        onchange="count()" />
-                                </label>
-                                <br>
 
-                                <input type="submit" value="確定" onclick="OrderTotal()" />
-                                <input type="reset" value="清除" onclick="clr()" />
+
+                                
                                 <!--</form>-->
                             </div>
                         </div>
