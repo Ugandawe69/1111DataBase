@@ -143,13 +143,13 @@
           $.ajax({
             url: "./php/login.php",
             type: "post",
-            dataType: "json",
+            dataType: "text",
             data: data,
             success: function (returnData) {
-              //console.log(returnData);
+              LoginReturndata(returnData);
             },
             error: function (data) {
-              console.log(data);
+              console.log("1111111111");
             },
           });
         });
