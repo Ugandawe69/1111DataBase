@@ -572,12 +572,14 @@
 <script>
     let total = 0;
     //取決於table資料數
-    const numberOfMeal = 5;
+    //let numberOfMeal = SELECT COUNT(*) FROM `meal`;
+    let numberOfMeal = 5;
 
     //客人點了甚麼得陣列
     let mealArray = new Array(numberOfMeal);
 
     //可以從Menu table提取陣列
+    //SELECT `name` FROM `meal`
     let nameArray = ["綜合水煮", "椒麻雞塊", "花娘烤排", "那個中卷", "海鮮豆腐煲"];
 
 
