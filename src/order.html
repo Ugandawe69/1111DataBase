@@ -332,6 +332,15 @@
 
         //start function for window.addEventListener 
         function start() {
+            let _date= new Date();
+            let Week = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            let Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+            let day= Week[_date.getDay()];
+            let month = Month[_date.getMonth()];
+            let year = _date.getFullYear();   
+            let date = _date.getDate();
+            $("#Date").html(date+" "+month+", "+year);
+            $("#Day").html(day);
             $.ajax({
                 url: "./php/login.php",
                 type: "post",
@@ -344,6 +353,7 @@
                     console.log(data);
                 },
             });
+            
         }
         //Addition load function for other purpose
         function load() {
@@ -374,10 +384,10 @@
             <div class="header">
                 <div class="order-summary">
                     <div class="order-status">Order date</div>
-                    <div class="order-date" id="orderDate">
-                        17 December, 2022
+                    <div class="order-date" id="Date">
+                        123
                     </div>
-                    <div class="order-day" id="weekDay">
+                    <div class="order-day" id="Day">
                         Saturday
                     </div>
                 </div>
