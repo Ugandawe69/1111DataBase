@@ -1,0 +1,102 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript">
+    //一開始要獲取json資料
+    let jsonUrl = "./php/manager.php";
+    $.getJSON(jsonUrl, function (data) {
+      for (let item in data) {
+        let content =
+          "<tr>" +
+          "<td>" +
+          data[item].name +
+          "</td>" +
+          "<td>" +
+          data[item].price +
+          "</td>" +
+          "</tr>";
+        $("#menu").append(content);
+      }
+    });
+    //新增資料
+    $(function () {
+      $("#BTN1").on("click", function () {
+        var $form = $("#add");
+        var data = getFormData($form);
+        console.log(typeof data);
+        data["act"] = "add"; //新增這個讓post判斷
+        console.log(data); //這邊有印出來看
+        $.ajax({
+          url: "./php/manager_db.php",
+          type: "post",
+          dataType: "text",
+          data: data,
+          success: function (returnData) {
+            console.log("yooooooooo");
+          },
+          error: function (error) {
+            console.log("33333333");
+          },
+        });
+      });
+    });
+    //減少資料
+    $(function () {
+      $("#BTN2").on("click", function () {
+        var $form = $("#delete");
+        var data = getFormData($form);
+        console.log(typeof data);
+        data["act"] = "delete"; //新增這個讓post判斷
+        console.log(data); //這邊有印出來看
+        $.ajax({
+          url: "./php/manager_db.php",
+          type: "post",
+          dataType: "text",
+          data: data,
+          success: function (returnData) {
+            console.log("yooooooooo");
+          },
+          error: function (error) {
+            console.log("33333333");
+          },
+        });
+      });
+    });
+    //修改資料
+  </script>
+  <title>haha</title>
+</head>
+
+<body>
+  <h2>meal</h2>
+  <table border="1">
+    <tbody id="menu">
+      <tr>
+        <th>name</th>
+        <th>price</th>
+      </tr>
+    </tbody>
+  </table>
+  <form id="add">
+    名稱：
+    <input type="text" name="name" /><br /><br />
+    價錢：
+    <input type="text" name="price" /><br /><br />
+    <button type="button" id="BTN1" class="btn btn-default">新增</button>
+  </form>
+
+  <form id="delete">
+    名稱：
+    <input type="text" name="name" /><br /><br />
+    <button type="button" id="BTN2" class="btn btn-default">刪除</button>
+  </form>
+
+  <form id="change_name">
+    名稱：
+    <input type="text" name="name" /><br /><br />
+    價錢：
+    <input type="text" name="price" /><br /><br />
+    <button type="button" id="BTN3" class="btn btn-default">修改</button>
+  </form>
+</body>
