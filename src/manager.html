@@ -19,7 +19,6 @@
             font-family: sans-serif;
             min-width: 400px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-
         }
 
         .logo {
@@ -113,6 +112,7 @@
         }
 
         .group {
+            
             list-style: none;
             padding: 0;
             margin: auto auto 40px auto;
@@ -130,6 +130,90 @@
         }
         .group :hover, .group :focus{
             background-color: #ECE5B6;
+        }
+
+        .group1::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .group1:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .group1::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 10 10 10 10;
+            background: #92DCE5;
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        .group2::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .group2:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .group2::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 10 10 10 10;
+            background: #E6B2C9;
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        .group3::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .group3:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .group3::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 10 10 10 10;
+            background: #ECE5B6;
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        .group4::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .group4:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .group4::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 10 10 10 10;
+            background: #786969;
+            z-index: -1;
+            transition: transform .3s ease;
         }
 
         @keyframes slide {
@@ -248,12 +332,13 @@
                 </tr>
             </tbody>
         </table>
-        <br />
-        <div class="group">
-            <div class="h3-container">
+        
+
+        <div class="group ">
+            <div class="h3-container ">
                 <h2>新增菜品</h2>
             </div>
-            <form id="add">
+            <form id="add"  class="group1">
             
             名稱：
             <input type="text" name="name" /><br /><br />
@@ -262,35 +347,39 @@
             <button type="button" id="BTN1" class="btn btn-default">新增</button>
             </form>
         </div>
-        
+ 
+
         <div class="group">
             <div class="h3-container">
                 <h2>刪除菜品</h2>
             </div>
-            <form id="delete">
+            <form id="delete" class="group2">
             名稱：
             <input type="text" name="name" /><br /><br />
             <button type="button" id="BTN2" class="btn btn-default">刪除</button>
             </form>
         </div>
-        <div class="group">
+   
+        <div class="group group3">
             <div class="h3-container">
                 <h2>修改菜品</h2>
             </div>
-            名稱：
+            <form  class="group3">
+                 名稱：
             <input type="text" name="name" /><br /><br />
             修改名稱 :
             <input type="text" name="change_name" /><br /><br />
             修改價錢：
             <input type="text" name="price" /><br /><br />
             <button type="button" id="BTN3" class="btn btn-default">修改</button>
+            </form>
+           
         </div>
-
-        <div class="group">
+        <div class="group ">
             <div class="h3-container">
                 <h2>新增員工資料</h2>
             </div>
-            <form id="add_emp">
+            <form id="add_emp" class="group4">
             員工名稱：
             <input type="text" name="emp_name" /><br /><br />
             修改員工名稱 :
@@ -300,6 +389,7 @@
             <button type="button" id="BTN4" class="btn btn-default">修改</button>
         </form>
         </div>
+    </div>
 
 
 
