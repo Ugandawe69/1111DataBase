@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     $conn=require_once "config.php";
     
     $username=$_POST["username"];
@@ -15,20 +16,12 @@
         
         #如果有找到
         if(mysqli_num_rows($result)==1 && $tmp["password"]){
-            //儲存進session裡
-            session_start();
-            $_SESSION["loggedin"] = true;
-            $_SESSION["username"] =$tmp["username"];
-
-            echo $_SESSION["loggedin"];
-            echo $_SESSION["username"];
-            exit;
+            setcookie("username", $tmp["username"] , time()+3600);
+            header("location:../order.html");
         }
-        echo "fail";
-        exit;
     }
        
     mysqli_close($conn);
+    ob_end_flush();
 
-    ?>
 ?>

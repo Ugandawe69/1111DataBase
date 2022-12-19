@@ -21,3 +21,11 @@ function LoginReturndata(data) {
   console.log(data);
   location.replace("../order.html");
 }
+
+function genarr(data) {
+  arr = [];
+  data.foreach(function (value, key) {
+    arr.push(value);
+  });
+  return arr;
+}
