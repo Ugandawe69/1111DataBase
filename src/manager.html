@@ -119,14 +119,17 @@
             display: block;
             text-decoration: none;
             padding: 15px;
-            background: rgba(33, 80, 73, 0.25);
+            background-color: rgba(33, 80, 73, 0.25);
             color: #0a1311;
             font-size: 20px;
 
             width: 50%;
             text-align: center;
             cursor: pointer;
-            transition: 0.5s ease;
+            transition: 0.5s all;
+        }
+        .group :hover, .group :focus{
+            background-color: #ECE5B6;
         }
 
         @keyframes slide {
@@ -297,5 +300,7 @@
             <button type="button" id="BTN4" class="btn btn-default">修改</button>
         </form>
         </div>
+
+
 
 </body>
