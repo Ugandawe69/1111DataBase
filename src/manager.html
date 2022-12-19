@@ -8,7 +8,7 @@
         }
 
         body {
-            background-color: rgb(241, 241, 231);
+            background-color: rgba(19, 35, 47, .9);
             text-align: center;
         }
 
@@ -71,18 +71,62 @@
         .h1-container {
             background-color: #a0b3b0;
             list-style: none;
+            width: 70%;
             padding: 0;
-            margin: 0 0 40px 0;
             top: -20px;
             border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 6px 3px rgba(70, 74, 78, 0.3);
         }
-
+        .h2-container {
+            background-color: #a0b3b0;
+            list-style: none;
+            width: 20%;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .group .h3-container {
+            background-color: #a0b3b0;
+            list-style: none;
+            width: 20%;
+            font-size: 15px;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 6px 3px rgba(70, 74, 78, 0.3);
+        }
         .text-field {
             margin: 2px;
             color: #d6e4e0;
             background-color: rgba(30, 63, 88, 0.9);
+        }
 
+        .group {
+            list-style: none;
+            padding: 0;
+            margin: auto auto 40px auto;
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            background: rgba(33, 80, 73, 0.25);
+            color: #0a1311;
+            font-size: 20px;
 
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.5s ease;
         }
 
         @keyframes slide {
@@ -181,15 +225,19 @@
             });
         });
     </script>
-    <title>haha</title>
+    <title>管理頁面</title>
 </head>
 
 <body>
-    <div>
-        <h2>meal</h2>
-    </div>
-
+    <div class="img-container">
+        <div class="h1-container">
+            <h1>管理頁面</h1>
+        </div>
+        <hr>    
         <table class="center" border="1">
+            <div class="h2-container">
+                <h2>菜單</h2>
+            </div>
             <tbody id="menu">
                 <tr>
                     <th>name</th>
@@ -197,28 +245,57 @@
                 </tr>
             </tbody>
         </table>
-    <br>
-    <form id="add">
-        名稱：
-        <input type="text" name="name" /><br /><br />
-        價錢：
-        <input type="text" name="price" /><br /><br />
-        <button type="button" id="BTN1" class="btn btn-default">新增</button>
-    </form>
+        <br />
+        <div class="group">
+            <div class="h3-container">
+                <h2>新增菜品</h2>
+            </div>
+            <form id="add">
+            
+            名稱：
+            <input type="text" name="name" /><br /><br />
+            價錢：
+            <input type="text" name="price" /><br /><br />
+            <button type="button" id="BTN1" class="btn btn-default">新增</button>
+            </form>
+        </div>
+        
+        <div class="group">
+            <div class="h3-container">
+                <h2>刪除菜品</h2>
+            </div>
+            <form id="delete">
+            名稱：
+            <input type="text" name="name" /><br /><br />
+            <button type="button" id="BTN2" class="btn btn-default">刪除</button>
+            </form>
+        </div>
+        <div class="group">
+            <div class="h3-container">
+                <h2>修改菜品</h2>
+            </div>
+            名稱：
+            <input type="text" name="name" /><br /><br />
+            修改名稱 :
+            <input type="text" name="change_name" /><br /><br />
+            修改價錢：
+            <input type="text" name="price" /><br /><br />
+            <button type="button" id="BTN3" class="btn btn-default">修改</button>
+        </div>
 
-    <form id="delete">
-        名稱：
-        <input type="text" name="name" /><br /><br />
-        <button type="button" id="BTN2" class="btn btn-default">刪除</button>
-    </form>
+        <div class="group">
+            <div class="h3-container">
+                <h2>新增員工資料</h2>
+            </div>
+            <form id="add_emp">
+            員工名稱：
+            <input type="text" name="emp_name" /><br /><br />
+            修改員工名稱 :
+            <input type="text" name="change_emp_name" /><br /><br />
+            修改薪水：
+            <input type="text" name="salary" /><br /><br />
+            <button type="button" id="BTN4" class="btn btn-default">修改</button>
+        </form>
+        </div>
 
-    <form id="updata">
-        名稱：
-        <input type="text" name="name" /><br /><br />
-        修改名稱 :
-        <input type="text" name="change_name" /><br /><br />
-        修改價錢：
-        <input type="text" name="price" /><br /><br />
-        <button type="button" id="BTN3" class="btn btn-default">修改</button>
-    </form>
 </body>
