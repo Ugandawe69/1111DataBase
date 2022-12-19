@@ -1,125 +1,224 @@
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script type="text/javascript" src="js/ajax.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script language="javascript" type="text/javascript">
-    //一開始要獲取json資料
-    let jsonUrl = "./php/manager.php";
-    $.getJSON(jsonUrl, function (data) {
-      for (let item in data) {
-        let content =
-          "<tr>" +
-          "<td>" +
-          data[item].name +
-          "</td>" +
-          "<td>" +
-          data[item].price +
-          "</td>" +
-          "</tr>";
-        $("#menu").append(content);
-      }
-    });
-    //新增資料
-    $(function () {
-      $("#BTN1").on("click", function () {
-        var $form = $("#add");
-        var data = getFormData($form);
-        console.log(typeof data);
-        data["act"] = "add"; //新增這個讓post判斷
-        console.log(data); //這邊有印出來看
-        $.ajax({
-          url: "./php/manager_db.php",
-          type: "post",
-          dataType: "text",
-          data: data,
-          success: function (returnData) {
-            console.log("yooooooooo");
-          },
-          error: function (error) {
-            console.log("33333333");
-          },
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        <style>@import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+
+        html {
+            font-family: "Noto Sans TC";
+        }
+
+        body {
+            background-color: rgb(241, 241, 231);
+            text-align: center;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        }
+
+        .logo {
+            width: 350px;
+            height: 350px;
+            background-image: url(./source/Logo2.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation-name: slide;
+            animation-duration: 4s;
+            align-items: center;
+        }
+
+        .hreflink {
+            color: rgb(124, 32, 32);
+            text-decoration: none;
+        }
+
+        .hreflink:hover {
+            background-color: lightblue;
+            color: navy;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .img-container {
+            background-color: rgb(241, 241, 231);
+            padding: 40px;
+            max-width: 70%;
+            opacity: 0.8;
+            margin: 40px auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px 4px rgba(10, 29, 3, 0.3);
+        }
+
+        .form-container {
+            background-color: rgb(241, 241, 231);
+            padding: 40px;
+
+            max-width: 30%;
+            border-radius: 20px;
+
+            opacity: 0.8;
+            margin: 40px auto;
+
+            box-shadow: 0 4px 6px 3px rgba(2, 23, 39, 0.3);
+        }
+
+        .h1-container {
+            background-color: #a0b3b0;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+            top: -20px;
+            border-radius: 10px;
+        }
+
+        .text-field {
+            margin: 2px;
+            color: #d6e4e0;
+            background-color: rgba(30, 63, 88, 0.9);
+
+
+        }
+
+        @keyframes slide {
+            from {
+                background-image: url(./source/blank.jpg);
+            }
+
+            to {
+                background-image: url(./source/Logo.jpg);
+            }
+        }
+    </style>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        //一開始要獲取json資料
+        let jsonUrl = "./php/manager.php";
+        $.getJSON(jsonUrl, function (data) {
+            for (let item in data) {
+                let content =
+                    "<tr>" +
+                    "<td>" +
+                    data[item].name +
+                    "</td>" +
+                    "<td>" +
+                    data[item].price +
+                    "</td>" +
+                    "</tr>";
+                $("#menu").append(content);
+            }
         });
-      });
-    });
-    //減少資料
-    $(function () {
-      $("#BTN2").on("click", function () {
-        var $form = $("#delete");
-        var data = getFormData($form);
-        console.log(typeof data);
-        data["act"] = "delete"; //新增這個讓post判斷
-        console.log(data); //這邊有印出來看
-        $.ajax({
-          url: "./php/manager_db.php",
-          type: "post",
-          dataType: "text",
-          data: data,
-          success: function (returnData) {
-            console.log("yooooooooo");
-          },
-          error: function (error) {
-            console.log("33333333");
-          },
+        //新增資料
+        $(function () {
+            $("#BTN1").on("click", function () {
+                var $form = $("#add");
+                var data = getFormData($form);
+                console.log(typeof data);
+                data["act"] = "add"; //新增這個讓post判斷
+                console.log(data); //這邊有印出來看
+                $.ajax({
+                    url: "./php/manager_db.php",
+                    type: "post",
+                    dataType: "text",
+                    data: data,
+                    success: function (returnData) {
+                        console.log("yooooooooo");
+                    },
+                    error: function (error) {
+                        console.log("33333333");
+                    },
+                });
+            });
         });
-      });
-    });
-    //修改資料
-    $(function () {
-      $("#BTN3").on("click", function () {
-        var $form = $("#updata");
-        var data = getFormData($form);
-        console.log(typeof data);
-        data["act"] = "updata"; //新增這個讓post判斷
-        console.log(data); //這邊有印出來看
-        $.ajax({
-          url: "./php/manager_db.php",
-          type: "post",
-          dataType: "text",
-          data: data,
-          success: function (returnData) {
-            console.log(returnData);
-          },
-          error: function (error) {
-            console.log("33333333");
-          },
+        //減少資料
+        $(function () {
+            $("#BTN2").on("click", function () {
+                var $form = $("#delete");
+                var data = getFormData($form);
+                console.log(typeof data);
+                data["act"] = "delete"; //新增這個讓post判斷
+                console.log(data); //這邊有印出來看
+                $.ajax({
+                    url: "./php/manager_db.php",
+                    type: "post",
+                    dataType: "text",
+                    data: data,
+                    success: function (returnData) {
+                        console.log("yooooooooo");
+                    },
+                    error: function (error) {
+                        console.log("33333333");
+                    },
+                });
+            });
         });
-      });
-    });
-  </script>
-  <title>haha</title>
+        //修改資料
+        $(function () {
+            $("#BTN3").on("click", function () {
+                var $form = $("#updata");
+                var data = getFormData($form);
+                console.log(typeof data);
+                data["act"] = "updata"; //新增這個讓post判斷
+                console.log(data); //這邊有印出來看
+                $.ajax({
+                    url: "./php/manager_db.php",
+                    type: "post",
+                    dataType: "text",
+                    data: data,
+                    success: function (returnData) {
+                        console.log(returnData);
+                    },
+                    error: function (error) {
+                        console.log("33333333");
+                    },
+                });
+            });
+        });
+    </script>
+    <title>haha</title>
 </head>
 
 <body>
-  <h2>meal</h2>
-  <table border="1">
-    <tbody id="menu">
-      <tr>
-        <th>name</th>
-        <th>price</th>
-      </tr>
-    </tbody>
-  </table>
-  <form id="add">
-    名稱：
-    <input type="text" name="name" /><br /><br />
-    價錢：
-    <input type="text" name="price" /><br /><br />
-    <button type="button" id="BTN1" class="btn btn-default">新增</button>
-  </form>
+    <div>
+        <h2>meal</h2>
+    </div>
 
-  <form id="delete">
-    名稱：
-    <input type="text" name="name" /><br /><br />
-    <button type="button" id="BTN2" class="btn btn-default">刪除</button>
-  </form>
+        <table class="center" border="1">
+            <tbody id="menu">
+                <tr>
+                    <th>name</th>
+                    <th>price</th>
+                </tr>
+            </tbody>
+        </table>
+    <br>
+    <form id="add">
+        名稱：
+        <input type="text" name="name" /><br /><br />
+        價錢：
+        <input type="text" name="price" /><br /><br />
+        <button type="button" id="BTN1" class="btn btn-default">新增</button>
+    </form>
 
-  <form id="updata">
-    名稱：
-    <input type="text" name="name" /><br /><br />
-    修改名稱 :
-    <input type="text" name="change_name" /><br /><br />
-    修改價錢：
-    <input type="text" name="price" /><br /><br />
-    <button type="button" id="BTN3" class="btn btn-default">修改</button>
-  </form>
+    <form id="delete">
+        名稱：
+        <input type="text" name="name" /><br /><br />
+        <button type="button" id="BTN2" class="btn btn-default">刪除</button>
+    </form>
+
+    <form id="updata">
+        名稱：
+        <input type="text" name="name" /><br /><br />
+        修改名稱 :
+        <input type="text" name="change_name" /><br /><br />
+        修改價錢：
+        <input type="text" name="price" /><br /><br />
+        <button type="button" id="BTN3" class="btn btn-default">修改</button>
+    </form>
 </body>
