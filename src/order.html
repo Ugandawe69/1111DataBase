@@ -302,7 +302,7 @@
 
         }
     </style>
-    <script type="text/javascript" src="js/handleform.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script src="jquery-3.6.1.min.js" type="text/javascript"></script>
@@ -316,40 +316,72 @@
                 data[item].name + 
                 " " + 
                 data[item].price + 
-                '<input name="food1" id="index1" type="number" min="0" max="7" step="1" value="0" onchange="count()" />' +
-                "</label>" +
+                '<input name="' +
+                data[item].name +
+                '" type="number" min="0" max="7" step="1" value="0" />' +
                 "<br>" +
                 "</br>";
                 $("#product-desc").append(content) 
             } 
-            $("#product-desc").append('<input type="submit" id="checkorder" value="確定" onclick="OrderTotal()" />') 
+            $("#product-desc").append('<button type="button" id="checkorder" />確定</button>') 
             $("#product-desc").append('<input type="reset" value="清除" onclick="clr()" />')                   
         });
 
+        let jUrl = "./php/order.php"; 
+        $.getJSON(jUrl, function(data) { 
+            for (let item in data) { 
+                let content = 
+                "<lable>" +
+                data[item].username + 
+                " " + 
+                data[item].product + 
+                 " " + 
+                data[item].price + 
+                "<br>" +
+                "</lable>";
+                $("#record").append(content) 
+            }                    
+        });
+
+        //登出按鈕
+        $(function (){
+            $("#logoutbtn").on("click",function(){
+                $.ajax({
+                    url: "./php/logout.php",
+                    type: "post",
+                    dataType: "text",
+                    success: function (returnData) {
+                        window.location.replace("./index.html");
+                    },
+                    error: function (data) {
+                    console.log("1111111111");
+                },
+               });
+            });
+        });
+
+
         $(function () {
-        $("#checkorder").on("click", function () {
-          var $form = $("#product-desc");
-          var data = getFormData($form);
-          console.log(data);
-          /*
-          $.ajax({
-            url: "./php/login.php",
-            type: "post",
-            dataType: "text",
-            data: data,
-            success: function (returnData) {
-              alert(returnData);
-              window.location.replace("../order.html");
-            },
-            error: function (data) {
-              console.log("1111111111");
-            },
-          });
-          */
+            $("#checkorder").on("click", function () {
+            var $form = $("#product-desc");
+            var data = getFormData($form);
+            console.log(data);
+            $.ajax({
+                url: "./php/order_db.php",
+                type: "post",
+                dataType: "text",
+                data: data,
+                success: function (returnData) {
+                    console.log(returnData);
+                },
+                error: function (data) {
+                console.log("1111111111");
+                },
+            });
+            
         });
       });
-
-
+      
         //start function for window.addEventListener 
         function start() {
             let _date= new Date();
@@ -390,7 +422,7 @@
                 },
             });
         }
-        window.addEventListener("load", start, false);
+        //window.addEventListener("load", start, false);
     </script>
 
 </head>
@@ -412,7 +444,8 @@
                     </div>
                 </div>
                 <div class="action-btn">
-                    <div class="back-btn"><i class="far fa-long-arrow-left">關閉菜單</i></div>
+                    <div class="back-btn"><button id="logoutbtn" type="button" class="far fa-long-arrow-left">登出</button></div>
+                    
                 </div>
             </div>
             <!---------header area----------->
@@ -433,9 +466,7 @@
                 <br>
                 <h2>點餐紀錄</h2>
                 <div id="record" class="status-item first">
-                    目前尚未點過餐點喔~ 打開下方菜單開始點菜吧~!
-                    <br>
-                    <div id="orderTotal"> </div>
+                    
                 </div>
             </div>
             <!---------order-status area----------->
@@ -493,6 +524,7 @@
 
 <!----script for animation ----->
 <script>
+    
     //anime.js library
     let drawer_open = false;
 
@@ -543,7 +575,7 @@
         autoplay: false,
         begin: function () {
             show_hideCTA("block");
-            drawer_open = false;
+            //drawer_open = false;
         }
     })
 
@@ -560,11 +592,13 @@
         document.querySelector(".cta-button").style.display = param;
         document.querySelector(".cta-text").style.display = param;
     }
+    
 </script>
 
 
 <!--------------logic for deal database data------------------>
 <script>
+    /*
     let total = 0;
     //取決於table資料數
     //let numberOfMeal = SELECT COUNT(*) FROM `meal`;
@@ -613,6 +647,7 @@
     function clr() {
         $("#total").text("目前總額: " + 0 + " NT$");
     }
+    */
 
 </script>
 
